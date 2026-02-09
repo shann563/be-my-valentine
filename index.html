@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>Be My Valentine?</title>
 
@@ -113,19 +114,26 @@ button{
 }
 
 /* 8. Mobile adjustments */
-@media (max-width:480px){
+@media (max-width:500px){
     .card{
-        padding:30px 15px;
+        padding:50px 25px;  /* more padding for mobile */
+        width:320px;          /* bigger card width */
+        height: 400px;
+        /* max-width:none;     allow full width */
     }
 
     .btn-container{
         flex-direction:column;
+        align-items: center;
         gap:10px;
     }
 
     button{
         width:90%; /* smaller fixed width on mobile */
-        max-width:200px; /* prevent huge button */
+        max-width:250px; /* prevent huge button */
+    }
+    h1{
+        margin-bottom: 5rem;
     }
 }
 
