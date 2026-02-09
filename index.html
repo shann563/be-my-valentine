@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <title>Be My Valentine?</title>
 
 <!-- Cute Google Font -->
@@ -12,6 +13,7 @@
 
 <style>
 
+/* 1. General Reset */
 *{
     margin:0;
     padding:0;
@@ -19,16 +21,18 @@
     font-family:'Mochiy Pop One', sans-serif;
 }
 
+/* 2. Body & background */
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#ff9ec4,#ffc3e0,#ffd6ec);
-    overflow:hidden;
+    overflow-x:hidden; /* prevent horizontal scroll on mobile */
+    position:relative;
 }
 
-/* Floating hearts */
+/* 3. Floating hearts */
 .heart{
     position:absolute;
     bottom:-50px;
@@ -43,46 +47,52 @@ body{
     }
 }
 
+/* 4. Card */
 .card{
     background:white;
-    padding:60px 80px;
+    padding:40px 20px;
     border-radius:25px;
     text-align:center;
     box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    max-width:90%;
+    width:350px;
 }
 
+/* 5. Heading */
 h1{
-    font-size:2.5rem;
-    margin-bottom:30px;
+    font-size:clamp(1.8rem,5vw,2.5rem);
+    margin-bottom:25px;
 }
 
+/* 6. Button container */
 .btn-container{
     position:relative;
-    width:300px;
-    height:150px;
-    margin:auto;
+    width:100%;
+    height:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
 }
 
+/* 7. Buttons */
 button{
-    position:absolute;
     display:flex;
     justify-content:center;
     align-items:center;
 
-    width:80px;
+    flex:1; /* responsive width */
+    min-width:80px;
     height:50px;
 
-    font-size:18px;
+    font-size:clamp(14px,4vw,18px);
     border:none;
     border-radius:50px;
     cursor:pointer;
     transition:.25s;
 }
 
-
 /* YES button */
 #yes{
-    left:30px;
     background:#ff4d88;
     color:white;
 }
@@ -94,12 +104,27 @@ button{
 
 /* NO button */
 #no{
-    right:30px;
     background:#eee;
 }
 
 #no:hover{
     background:#ddd;
+}
+
+/* 8. Mobile adjustments */
+@media (max-width:480px){
+    .card{
+        padding:30px 15px;
+    }
+
+    .btn-container{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    button{
+        width:100%;
+    }
 }
 
 </style>
