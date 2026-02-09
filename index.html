@@ -80,8 +80,9 @@ button{
     justify-content:center;
     align-items:center;
 
-    flex:1; /* responsive width */
+    /* flex:1;  REMOVE THIS */
     min-width:80px;
+    width:120px; /* fixed width instead of flex-grow */
     height:50px;
 
     font-size:clamp(14px,4vw,18px);
@@ -123,7 +124,8 @@ button{
     }
 
     button{
-        width:100%;
+        width:90%; /* smaller fixed width on mobile */
+        max-width:200px; /* prevent huge button */
     }
 }
 
