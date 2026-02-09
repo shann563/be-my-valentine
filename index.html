@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine?</title>
+
+<!-- Cute Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Mochiy Pop One', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9ec4,#ffc3e0,#ffd6ec);
+    overflow:hidden;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-50px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+.card{
+    background:white;
+    padding:60px 80px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:30px;
+}
+
+.btn-container{
+    position:relative;
+    width:300px;
+    height:150px;
+    margin:auto;
+}
+
+button{
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:80px;
+    height:50px;
+
+    font-size:18px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+
+/* YES button */
+#yes{
+    left:30px;
+    background:#ff4d88;
+    color:white;
+}
+
+#yes:hover{
+    transform:scale(1.15);
+    box-shadow:0 0 20px #ff4d88;
+}
+
+/* NO button */
+#no{
+    right:30px;
+    background:#eee;
+}
+
+#no:hover{
+    background:#ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Would you be my Valentine? 💖</h1>
+
+    <div class="btn-container">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+</div>
+
+<script>
+
+/* Floating hearts generator */
+setInterval(()=>{
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.innerHTML="💗";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+10)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),6000);
+
+},300);
+
+
+/* Escaping NO button */
+const noBtn = document.getElementById("no");
+
+document.addEventListener("mousemove", (e) => {
+
+    const rect = noBtn.getBoundingClientRect();
+
+    const distance = 100; // trigger distance
+
+    const diffX = Math.abs(e.clientX - (rect.left + rect.width/2));
+    const diffY = Math.abs(e.clientY - (rect.top + rect.height/2));
+
+    if(diffX < distance && diffY < distance){
+
+        const padding = 20; // keeps button away from edges
+
+        const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+        const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+        const minX = padding;
+        const minY = padding;
+
+        const randomX = Math.random() * (maxX - minX) + minX;
+        const randomY = Math.random() * (maxY - minY) + minY;
+
+        noBtn.style.position = "fixed"; // IMPORTANT
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+});
+
+/* YES redirect + confetti */
+document.getElementById("yes").addEventListener("click",()=>{
+
+    // simple confetti effect
+    for(let i=0;i<80;i++){
+        const confetti=document.createElement("div");
+
+        confetti.style.position="absolute";
+        confetti.style.width="8px";
+        confetti.style.height="8px";
+        confetti.style.background=`hsl(${Math.random()*360},100%,70%)`;
+        confetti.style.left=Math.random()*100+"vw";
+        confetti.style.top="-10px";
+        confetti.style.opacity=0.8;
+        confetti.style.transform="rotate(45deg)";
+        confetti.style.animation="fall 3s linear";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>confetti.remove(),3000);
+    }
+
+    setTimeout(()=>{
+        window.location.href="yes.html";
+    },900);
+});
+
+
+/* Confetti falling animation */
+const style=document.createElement('style');
+style.innerHTML=`
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+`;
+document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>

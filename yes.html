@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YAY ❤️</title>
+
+<!-- Cute Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Fredoka:wght@500&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>">
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Fredoka', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#ffb6d9,#ffd6ec);
+    overflow:hidden;
+    position:relative;
+}
+
+h1{
+    font-family:'Mochiy Pop One', sans-serif;
+    font-size:3rem;
+    margin-bottom:20px;
+    text-align:center;
+    color:#ff4d88;
+    text-shadow: 2px 2px 8px rgba(255,105,180,0.3);
+}
+
+/* GIF styling */
+img{
+    width:700px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-50px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>I knew you loved me 😘</h1>
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Love GIF">
+
+<script>
+/* Floating hearts generator */
+setInterval(()=>{
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+
+    // random horizontal position
+    heart.style.left = Math.random()*100 + "vw";
+
+    // random size
+    heart.style.fontSize = (Math.random()*20+10) + "px";
+
+    document.body.appendChild(heart);
+
+    // remove after animation
+    setTimeout(()=>heart.remove(),6000);
+},300);
+</script>
+
+</body>
+</html>
